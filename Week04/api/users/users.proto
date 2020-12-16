@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package users;
+option go_package = "github.com/neverhover/Go-001/tree/main/Week04/api/users;users";
+import "google/api/annotations.proto";
+
+service UsersService {
+  // Create a user
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+    option(google.api.http) = {
+      post: "/api/users"
+      body: "*"
+    };
+  }
+}
+
+message User {
+  string id = 1;
+  string password = 2;
+  string domain = 3;
+  string number_alias = 4;
+  string mailbox = 5;
+  string dial_string = 6;
+  string user_context = 7;
+}
+
+message CreateUserRequest {
+  User user = 1;
+}
+
+message CreateUserResponse {
+  User user = 1;
+}
